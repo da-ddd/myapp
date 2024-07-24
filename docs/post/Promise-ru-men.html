@@ -211,6 +211,23 @@ try{
      console.log(error)
 }
 ```
+
+**事件循环机制**
+async函数在抛出返回值时，会根据返回值类型开启不同数目的微任务
+
+- return结果值：非thenable、非promise（不等待）
+- return结果值：thenable（等待 1个then的时间）
+- return结果值：promise（等待 2个then的时间）
+
+await右值类型区别
+
+- 接非 thenable 类型，会立即向微任务队列添加一个微任务then，但不需等待
+- 
+- 接 thenable 类型，需要等待一个 then 的时间之后执行
+- 
+- 接Promise类型(有确定的返回值)，会立即向微任务队列添加一个微任务then，但不需等待
+- 
+- TC 39 对await 后面是 promise 的情况如何处理进行了一次修改，移除了额外的两个微任务，在早期版本，依然会等待两个 then 的时间
 。">
 <meta property="og:title" content="Promise入门">
 <meta property="og:description" content="# Promise入门
@@ -414,6 +431,23 @@ try{
      console.log(error)
 }
 ```
+
+**事件循环机制**
+async函数在抛出返回值时，会根据返回值类型开启不同数目的微任务
+
+- return结果值：非thenable、非promise（不等待）
+- return结果值：thenable（等待 1个then的时间）
+- return结果值：promise（等待 2个then的时间）
+
+await右值类型区别
+
+- 接非 thenable 类型，会立即向微任务队列添加一个微任务then，但不需等待
+- 
+- 接 thenable 类型，需要等待一个 then 的时间之后执行
+- 
+- 接Promise类型(有确定的返回值)，会立即向微任务队列添加一个微任务then，但不需等待
+- 
+- TC 39 对await 后面是 promise 的情况如何处理进行了一次修改，移除了额外的两个微任务，在早期版本，依然会等待两个 then 的时间
 。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://da-ddd.github.io/myapp/post/Promise-ru-men.html">
@@ -634,7 +668,24 @@ await必须写在async函数中，但async函数中可以没有await<br>
      <span class="pl-k">let</span> <span class="pl-s1">data3</span><span class="pl-c1">=</span><span class="pl-k">await</span> <span class="pl-s1">_promise对象_</span>
 <span class="pl-kos">}</span><span class="pl-k">catch</span><span class="pl-kos">(</span><span class="pl-s1">error</span><span class="pl-kos">)</span><span class="pl-kos">{</span>
      <span class="pl-smi">console</span><span class="pl-kos">.</span><span class="pl-en">log</span><span class="pl-kos">(</span><span class="pl-s1">error</span><span class="pl-kos">)</span>
-<span class="pl-kos">}</span></pre></div></div>
+<span class="pl-kos">}</span></pre></div>
+<p><strong>事件循环机制</strong><br>
+async函数在抛出返回值时，会根据返回值类型开启不同数目的微任务</p>
+<ul>
+<li>return结果值：非thenable、非promise（不等待）</li>
+<li>return结果值：thenable（等待 1个then的时间）</li>
+<li>return结果值：promise（等待 2个then的时间）</li>
+</ul>
+<p>await右值类型区别</p>
+<ul>
+<li>接非 thenable 类型，会立即向微任务队列添加一个微任务then，但不需等待</li>
+<li></li>
+<li>接 thenable 类型，需要等待一个 then 的时间之后执行</li>
+<li></li>
+<li>接Promise类型(有确定的返回值)，会立即向微任务队列添加一个微任务then，但不需等待</li>
+<li></li>
+<li>TC 39 对await 后面是 promise 的情况如何处理进行了一次修改，移除了额外的两个微任务，在早期版本，依然会等待两个 then 的时间</li>
+</ul></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
